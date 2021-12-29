@@ -1,0 +1,22 @@
+[{
+  "id": 1,
+  "name": "iPhone 7 Plus",
+  "description": "Apple, 32GB,RAM:3GB,iOS13",
+  "price": 17000000,
+  "image": "images/img2.jpg",
+  "category_id": 1
+},{
+  "id": 2,
+  "name": "iPad Pro",
+  "description": "Apple, 128GB,RAM:6GB",
+  "price": 37000000,
+  "image": "images/img1.png",
+  "category_id": 2
+},{
+  "id": 3,
+  "name": "Galaxy Note 10 Plus",
+  "description": "SamSung, 64GB,RAM:6GB",
+  "price": 24000000,
+  "image": "images/img3.jpg",
+  "category_id": 1
+}]
