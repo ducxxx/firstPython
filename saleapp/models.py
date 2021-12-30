@@ -22,22 +22,21 @@ class Product(BaseModel):
     price = Column(Float, default=0)
     image = Column(String(100))
     active = Column(Boolean, default=True)
-    create_date = Column(DateTime, default=datetime.now())
     category_id = Column(Integer, ForeignKey(Category.id), nullable=False)
     def __str__(self):
         return self.name
 
 if __name__ == '__main__':
-    #db.create_all()
+   # db.create_all()
 
         # c1 = Category(name='Dien thoai')
-#         # c2 = Category(name='May tinh bang')
-#         # c3 = Category(name='Dong ho thong minh')
-#         #
-#         # db.session.add(c1)
-#         # db.session.add(c2)
-#         # db.session.add(c3)
-#         # db.session.commit()
+        # c2 = Category(name='May tinh bang')
+        # c3 = Category(name='Dong ho thong minh')
+        #
+        # db.session.add(c1)
+        # db.session.add(c2)
+        # db.session.add(c3)
+        # db.session.commit()
 
             products = [{
                     "id": 1,

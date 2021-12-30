@@ -28,4 +28,5 @@ def product_detail(product_id):
     return render_template('product_detail.html', product=product)
 
 if __name__== '__main__':
+    from saleapp.admin import *
     app.run(debug=True)
