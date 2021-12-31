@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Trang Chu</title>
-    <link href="{{ url_for('static',filename='css/style.css') }}" rel="stylesheet">
-</head>
-<body>
-    <h1 class="subject">Xin chao cac ban</h1>
-
-    <ul>
-        <li><a href="{{ url_for('product_list') }}">Tat ca san pham</a></li>
-        {% for c in catgories %}
-        <li><a href="{{ url_for('product_list', category_id=c.id) }}">{{ c.name }}</a></li>
+{% extends 'layout/base.html' %}
+{% block title %}Trang chu{% endblock %}
+{% block content %}
+<h1 class="subject">Xin chao cac ban</h1>
+<div class="container">
+    <ul class="pagination">
+        {% for idx in range(1, pages+1) %}
+        <li class="page-item"><a class="page-link" href="{{ url_for('index', page =idx) }}">{{idx}}</a></li>
         {% endfor %}
     </ul>
+    {% if products %}
+    <div class="row">
+        {% for p in products %}
+        <div class="col-md-3 col-xs-12">
+            <div class="card" >
+              <img class="card-img-top" src="{{ url_for('static', filename=p.image)}}" alt="{{p.name}}">
+              <div class="card-body">
+                <h4 class="card-title">{{p.name}}</h4>
+                <p class="card-text">{{"{:,.1f}".format(p.price)}}</p>
+                <a href="#" class="btn btn-primary">Dat Hang</a>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p><i>Khong co san pham nao</i></p>
+    {% endif %}
+</div>
+{% endblock %}
 
-</body>
-</html>

@@ -1,12 +1,25 @@
+import math
+
 from flask import render_template, request
 from saleapp import app
 import utils
 
+
 @app.route("/")
-def home():
+def index():
     cates = utils.load_categories()
+    cate_id = request.args.get('category_id')
+    kw = request.args.get('keyword')
+    page = int(request.args.get('page', 1))
+    products = utils.load_products(kw=kw, cate_id=cate_id,page=page)
+    counter = utils.count_products()
     return render_template("index.html",
-                           catgories=cates)
+                           categories=cates,
+                           products=products,
+                           pages=math.ceil(counter / app.config['PAGE_SIZE']))
+
+
+
 @app.route("/products")
 def product_list():
     cate_id = request.args.get("category_id")
@@ -18,15 +31,17 @@ def product_list():
                                    from_price=from_price,
                                    to_price=to_price)
     return render_template('products.html',
-                            products=products)
+                           products=products)
+
 
 @app.route("/products/<int:product_id>")
 def product_detail(product_id):
-
     product = utils.get_product_by_id(product_id)
 
     return render_template('product_detail.html', product=product)
 
-if __name__== '__main__':
+
+if __name__ == '__main__':
     from saleapp.admin import *
+
     app.run(debug=True)
